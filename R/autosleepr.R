@@ -58,8 +58,8 @@ sleep_col_types <- cols(
   ISO8601 = col_datetime(format = ""),
   fromDate = col_character(),
   toDate = col_character(),
-  bedtime = col_datetime(format = ""),
-  waketime = col_datetime(format = ""),
+  bedtime = col_datetime(format = "") , #"%m/%d/%y %H:%M"),
+  waketime = col_datetime(format = ""), #"%m/%d/%y %H:%M"),
   inBed = col_time(format = ""),
   awake = col_time(format = ""),
   fellAsleepIn = col_time(format = ""),
@@ -69,11 +69,11 @@ sleep_col_types <- cols(
   qualityAvg7 = col_time(format = ""),
   deep = col_time(format = ""),
   deepAvg7 = col_time(format = ""),
-  SpO2Avg = col_logical(),
-  SpO2Min = col_logical(),
-  SpO2Max = col_logical(),
-  tags = col_logical(),
-  notes = col_logical()
+  SpO2Avg = col_double(),
+  SpO2Min = col_double(),
+  SpO2Max = col_double(),
+  tags = col_character(),
+  notes = col_character()
 )
 
 
@@ -87,10 +87,10 @@ sleep_col_types <- cols(
 autosleep_sleep_raw <- function(pathname = getwd()) {
 
   r <- readr::read_csv(pathname,
-                  col_names = sleep_cols_full_from_CSV,
-                  col_types = sleep_col_types,
-                  na = "--",
-                  skip = 1)
+                 # col_names = sleep_cols_full_from_CSV,
+                 col_types = sleep_col_types,
+                  na = "--")
+
 
   return(r)
 
